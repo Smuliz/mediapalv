@@ -7,6 +7,7 @@ import { MediaContext } from '../contexts/MediaContext';
 
 
 const RegisterForm = ({ history }) => {
+    // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useContext(MediaContext);
     const doRegister = async () => {
         try {

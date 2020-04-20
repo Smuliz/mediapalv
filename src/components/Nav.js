@@ -19,7 +19,7 @@ const Nav = ({ history }) => {
       }
     };
     checkUser();
-  }, [history]);
+  }, [history, setUser]);
 
   return (
     <nav>

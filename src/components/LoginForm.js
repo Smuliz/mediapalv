@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 
 const LoginForm = ({ history }) => {
+    // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useContext(MediaContext)
     const doLogin = async () => {
         try {
