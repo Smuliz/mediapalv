@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useLoginForm from '../hooks/LoginHooks';
 import { login } from '../hooks/ApiHooks';
+import { MediaContext } from '../contexts/MediaContext';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 
 
-const LoginForm = () => {
-    const doLogin = () => {
-        login(inputs);
-    }
+const LoginForm = ({ history }) => {
+    const [user, setUser] = useContext(MediaContext)
+    const doLogin = async () => {
+        try {
+            const userdata = await login(inputs);
+            setUser(userdata.user);
+            localStorage.setItem('token', userdata.token);
+            history.push('/home');
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
+
     const { inputs, handleInputChange, handleSubmit } = useLoginForm(doLogin);
     return (
         <>
@@ -32,5 +44,8 @@ const LoginForm = () => {
         </>
     );
 };
+LoginForm.propTypes = {
+    history: PropTypes.object,
+};
 
-export default LoginForm;
+export default withRouter(LoginForm);

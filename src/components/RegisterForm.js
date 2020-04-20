@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useSignUpForm from '../hooks/RegisterHooks';
 import { register, login, checkUserAvailable } from '../hooks/ApiHooks';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { MediaContext } from '../contexts/MediaContext';
 
 
 const RegisterForm = ({ history }) => {
+    const [user, setUser] = useContext(MediaContext);
     const doRegister = async () => {
-        const isAvailable = await checkUserAvailable(inputs.username);
-        if (isAvailable.available) {
-            const reg = await register(inputs);
-            const user = await login(inputs);
+        try {
+            await checkUserAvailable(inputs.username);
+            await register(inputs);
+            const userdata = await login(inputs);
+            setUser(userdata.user);
+            localStorage.setItem('token', userdata.token);
             history.push('/home');
-        } else {
-            console.log('isAvailable = false')
+        } catch (e) {
+            console.log("register form", e.message)
         }
-
     };
+
+
 
     const { inputs, handleInputChange, handleSubmit } = useSignUpForm(doRegister);
     return (
@@ -59,6 +64,6 @@ const RegisterForm = ({ history }) => {
 
 RegisterForm.propTypes = {
     history: PropTypes.object,
-}
+};
 
-export default withRouter{ RegisterForm };
+export default withRouter(RegisterForm);
