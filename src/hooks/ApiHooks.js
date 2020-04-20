@@ -12,7 +12,7 @@ const useAllMedia = () => {
       const response = await fetch(baseUrl + 'media/' + item.file_id);
       return await response.json();
     }));
-    console.log(json);
+    console.log(items);
     setData(items)
   }
 
@@ -36,7 +36,22 @@ const useSingleMedia = (id) => {
   }, [id]);
 
   return data;
-}
+};
+
+const useAvatarImage = (id) => {
+  const [data, setData] = useState([]);
+  const fetchUrl = async (uid) => {
+    const response = await fetch(baseUrl + 'tags/avatar_' + uid);
+    const item = await response.json();
+    setData(item);
+  }
+
+  useEffect(() => {
+    fetchUrl(id);
+  }, [id]);
+
+  return data;
+};
 
 const register = async (inputs) => {
   const fetchOptions = {
@@ -50,7 +65,7 @@ const register = async (inputs) => {
     const response = await fetch(baseUrl + 'users', fetchOptions);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -68,7 +83,7 @@ const login = async (inputs) => {
     const response = await fetch(baseUrl + 'login', fetchOptions);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -80,7 +95,7 @@ const checkUserAvailable = async (name) => {
     const response = await fetch(baseUrl + 'users/username/', name);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -96,7 +111,7 @@ const checkToken = async(token) => {
     const response = await fetch(baseUrl + 'users/user', fetchOptions);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -109,5 +124,6 @@ export {
   login,
   checkUserAvailable,
   checkToken,
+  useAvatarImage,
 
 }

@@ -4,6 +4,7 @@ import { login } from '../hooks/ApiHooks';
 import { MediaContext } from '../contexts/MediaContext';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import {Button, TextField, Grid} from '@material-ui/core';
 
 
 
@@ -17,32 +18,46 @@ const LoginForm = ({ history }) => {
             localStorage.setItem('token', userdata.token);
             history.push('/home');
         } catch (e) {
-            console.log(e.message);
+            console.log("login form",e.message);
         }
     };
 
     const { inputs, handleInputChange, handleSubmit } = useLoginForm(doLogin);
     return (
-        <>
-            <h1>Login</h1>
+        <Grid container spacing={3}>
+            <Grid item xs={12}>
+                <h1>Login</h1>
+            </Grid>
+            <Grid item xs={12}>
             <form onSubmit={handleSubmit}>
-                <input
+                <Grid container>
+                    <Grid container item xs={12}>
+                <TextField
+                    fullWidth
                     type="text"
                     name="username"
-                    placeholder="Username"
+                    label="Username"
                     onChange={handleInputChange}
                     value={inputs.username}
                 />
-                <input
+                </Grid>
+                <Grid container item xs={12}>
+                <TextField
+                    fullWidth
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    label="Password"
                     onChange={handleInputChange}
                     value={inputs.password}
                 />
-                <button type="submit">Login</button>
+                </Grid>
+                <Grid container item xs={12}>
+                <Button color="primary" type="submit">Login</Button>
+                </Grid>
+                </Grid>
             </form>
-        </>
+            </Grid>
+        </Grid>
     );
 };
 LoginForm.propTypes = {
