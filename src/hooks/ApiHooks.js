@@ -50,7 +50,7 @@ const register = async (inputs) => {
     const response = await fetch(baseUrl + 'users', fetchOptions);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -68,7 +68,7 @@ const login = async (inputs) => {
     const response = await fetch(baseUrl + 'login', fetchOptions);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -80,7 +80,7 @@ const checkUserAvailable = async (name) => {
     const response = await fetch(baseUrl + 'users/username/', name);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -96,7 +96,7 @@ const checkToken = async(token) => {
     const response = await fetch(baseUrl + 'users/user', fetchOptions);
     const json = await response.json();
     if (!response.ok) throw new Error(json.message + ': ' + json.error);
-    return json();
+    return json;
   } catch (e) {
     throw new Error(e.message);
   }
