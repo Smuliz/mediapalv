@@ -2,11 +2,9 @@ import { useState } from 'react';
 
 
 // Luento 5, 25.3 45min objektista dynaaminen nimen haku
-const useSignUpForm = (callback) => {
+const useProfileForm = (callback) => {
     const [inputs, setInputs] = useState({
         username: '',
-        password: '',
-        confirm: '',
         email: '',
         full_name: '',
     });
@@ -29,9 +27,10 @@ const useSignUpForm = (callback) => {
     return {
         handleSubmit,
         handleInputChange,
-        inputs
+        inputs,
+        setInputs,
     };
 }
 
 
-export default useSignUpForm;
+export default useProfileForm;
