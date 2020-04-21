@@ -27,7 +27,7 @@ const RegisterForm = ({ history }) => {
     const { inputs, handleInputChange, handleSubmit } = useSignUpForm(doRegister);
     return (
         <Grid container>
-            <Grid item>
+            <Grid item xs={12}>
                 <h1>Register</h1>
             </Grid>
             <Grid item xs={12}>

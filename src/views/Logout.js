@@ -12,7 +12,7 @@ const Logout = () => {
     }, [setUser]);
 
     return (
-        <Redirect to={'/home'}></Redirect>
+        <Redirect to={'/home'}/>
     );
 };
 
