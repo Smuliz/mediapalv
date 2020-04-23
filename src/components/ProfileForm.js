@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import useProfileForm from '../hooks/ProfileHooks';
-import { updateProfile, checkUserAvailable } from '../hooks/ApiHooks';
+import { updateProfile, checkUserAvailable, checkToken } from '../hooks/ApiHooks';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MediaContext } from '../contexts/MediaContext';
