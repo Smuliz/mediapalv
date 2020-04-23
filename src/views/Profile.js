@@ -33,44 +33,44 @@ const Profile = () => {
 
   return (
     <>
-    <Typography
-      component="h1"
-      variant="h2"
-      gutterBottom>Profile</Typography>
-    {user !== null && avatar.length > 0 &&
-    <Card>
-      <CardMedia
-        component="img"
-        image={mediaUrl + avatar[0].filename}
-        alt="Avatar image"
-        title="Avatar image"
-      />
-      <CardContent>
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <AccountBoxIcon/>
-            </ListItemIcon>
-            <ListItemText primary={user.username}/>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <EmailIcon/>
-            </ListItemIcon>
-            <ListItemText primary={user.email}/>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <PersonIcon/>
-            </ListItemIcon>
-            <ListItemText primary={user.full_name}/>
-          </ListItem>
-        </List>
-      </CardContent>
-    </Card>
-    }
-    <ProfileForm />
-  </>
+      <Typography
+        component="h1"
+        variant="h2"
+        gutterBottom>Profile</Typography>
+      {user !== null && avatar.length > 0 &&
+        <Card>
+          <CardMedia
+            component="img"
+            image={mediaUrl + avatar[0].filename}
+            alt="Avatar image"
+            title="Avatar image"
+          />
+          <CardContent>
+            <List>
+              <ListItem>
+                <ListItemIcon>
+                  <AccountBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.username} />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <EmailIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.email} />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.full_name} />
+              </ListItem>
+            </List>
+          </CardContent>
+        </Card>
+      }
+      <ProfileForm />
+    </>
   );
 };
 

@@ -46,7 +46,7 @@ const Nav = ({ history }) => {
   };
 
   useEffect(() => {
-    const checkUser = async() => {
+    const checkUser = async () => {
       try {
         const userdata = await checkToken(localStorage.getItem('token'));
         console.log(userdata);
@@ -70,7 +70,7 @@ const Nav = ({ history }) => {
             aria-label="menu"
             onClick={toggleDrawer(true)}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             MyApp
@@ -78,7 +78,7 @@ const Nav = ({ history }) => {
           {user === null ?
             <Button
               color="inherit"
-              startIcon={<ExitToAppIcon/>}
+              startIcon={<ExitToAppIcon />}
               component={RouterLink}
               to="/"
             >
@@ -86,7 +86,7 @@ const Nav = ({ history }) => {
             </Button> :
             <Button
               color="inherit"
-              startIcon={<ExitToAppIcon/>}
+              startIcon={<ExitToAppIcon />}
               component={RouterLink}
               to="/logout"
             >
@@ -104,22 +104,35 @@ const Nav = ({ history }) => {
             to="/home"
           >
             <ListItemIcon>
-              <HomeIcon/>
+              <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary="Home"/>
+            <ListItemText primary="Home" />
           </ListItem>
           {user !== null &&
-          <ListItem
-            button
-            component={RouterLink}
-            onClick={toggleDrawer(false)}
-            to="/profile"
-          >
-            <ListItemIcon>
-              <AccountBoxIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Profile"/>
-          </ListItem>
+            <>
+              <ListItem
+                button
+                component={RouterLink}
+                onClick={toggleDrawer(false)}
+                to="/profile"
+              >
+                <ListItemIcon>
+                  <AccountBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItem>
+              <ListItem
+                button
+                component={RouterLink}
+                onClick={toggleDrawer(false)}
+                to="/upload"
+              >
+                <ListItemIcon>
+                  <AccountBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Upload" />
+              </ListItem>
+            </>
           }
         </List>
       </Drawer>

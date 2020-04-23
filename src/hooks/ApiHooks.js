@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 const baseUrl = 'http://media.mw.metropolia.fi/wbma/';
 
@@ -126,6 +126,28 @@ const checkToken = async (token) => {
   }
 };
 
+const upload = async (inputs, token) => {
+  const formdata = new FormData();
+  formdata.append('title', inputs.title);
+  formdata.append('description', inputs.description);
+  formdata.append('file', inputs.file);
+
+  const fetchOptions = {
+    method: 'POST',
+    body: formdata,
+    headers: {
+      'x-access-token': localStorage.getItem('token'),
+    },
+  }
+  try {
+    const response = await fetch(baseUrl + 'media', fetchOptions);
+    const json = await response.json();
+    if (!response.ok) throw new Error(json.message + ': ' + json.error);
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 export {
   useAllMedia,
   useSingleMedia,
@@ -135,4 +157,5 @@ export {
   checkToken,
   getAvatarImage,
   updateProfile,
+  upload,
 };
